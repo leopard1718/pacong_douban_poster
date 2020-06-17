@@ -94,11 +94,12 @@ def shuju_insert(moviename, moviePosterurl):
                     break
                 else:
                     print("数据库中", moviename, "不存在，需要插入")
-                    c.execute("INSERT INTO MOVIE_POSTER_URL (ID, NAME, ADDRESS) VALUES (null, '{0}', '{1}')".format(moviename, moviePosterurl))
+                    c.execute("INSERT INTO MOVIE_POSTER_URL (ID, NAME, ADDRESS) VALUES (null, '{0}', '{1}')".
+                              format(moviename, moviePosterurl))
                     print("电影【", moviename, "】数据插入成功")
         # null写死 主键自增 剩下两个字段读取字典循环写入？？
     except:
-        print ("电影【", moviename, "】数据插入失败")
+        print("电影【", moviename, "】数据插入失败")
 
     conn.commit()
     conn.close()
@@ -112,7 +113,7 @@ def shuju_select():
         moviePoster_alldata = c.fetchall()
         # print moviePoster_alldata
     except:
-        print ("查询MOVIE_POSTER_URL表中的数据失败")
+        print("查询MOVIE_POSTER_URL表中的数据失败")
     return moviePoster_alldata
 
 
@@ -128,7 +129,7 @@ def download_pic(movie_name, pic_url):
         f2 = movie_name+'.jpg'
         with open(f2, "wb") as code:
             code.write(data)
-            print ("【", movie_name, "】海报下载成功")
+            print("【", movie_name, "】海报下载成功")
 
 
 def main():
