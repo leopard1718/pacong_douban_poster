@@ -135,7 +135,7 @@ def download_pic(movie_name, pic_url):
 def main():
     creatNewSqlite()
     keyvalue_dict_list = getNowPlayingMovie_list()
-    print(keyvalue_dict_list)
+    # print(keyvalue_dict_list)
     for keyvalue_dict in keyvalue_dict_list:
         moviename = keyvalue_dict['name']
         moviePosterurl = keyvalue_dict['img_src']
