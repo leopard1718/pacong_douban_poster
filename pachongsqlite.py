@@ -1,21 +1,9 @@
 # coding:utf-8
 
 import warnings
-import jieba  # 分词包
-import numpy  # numpy计算包
-import codecs  # codecs提供的open方法来指定打开的文件的语言编码，它会在读取的时候自动转换为内部unicode
-import re
-import pandas as pd
-import matplotlib
 from bs4 import BeautifulSoup as bs
-import matplotlib.pyplot as plt
 import urllib.request
-import xml.etree.ElementTree as ET
-import sys
-from wordcloud import WordCloud  # 词云包
-import json
 import sqlite3
-from imp import reload
 
 # matplotlib.rcParams['figure.figsize'] = (10.0, 5.0)
 warnings.filterwarnings("ignore")
@@ -78,7 +66,7 @@ def creatNewSqlite():
     conn.close()
 
 
-def shuju_insert(moviename, moviePosterurl):
+def data_insert(moviename, moviePosterurl):
     conn = sqlite3.connect('pacongsqlite.db')
     c = conn.cursor()
 
@@ -105,7 +93,7 @@ def shuju_insert(moviename, moviePosterurl):
     conn.close()
 
 
-def shuju_select():
+def data_select():
     conn =sqlite3.connect('pacongsqlite.db')
     c = conn.cursor()
     try:
@@ -139,8 +127,8 @@ def main():
     for keyvalue_dict in keyvalue_dict_list:
         moviename = keyvalue_dict['name']
         moviePosterurl = keyvalue_dict['img_src']
-        shuju_insert(moviename, moviePosterurl)
-    nameandpic_alldata = shuju_select()
+        data_insert(moviename, moviePosterurl)
+    nameandpic_alldata = data_select()
     for i in nameandpic_alldata:
         movie_name = i[0]
         pic_url = i[1]
